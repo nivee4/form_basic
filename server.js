@@ -29,19 +29,13 @@ const db = new sql.Database("data.db", (err) => {
 // db.run("drop table form")
 
 
-let s="select * from form";
-db.all(s,[],(err,rows)=>{
-    if (err) throw err.message;
-    rows.forEach(row=>{
-        console.log(row);
-    })
-})
 
 
-const port = 5000;
+
+const port = process.env.PORT||5000;
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+ 
 function validate(password, email, fname, lname) {
     if (!password || !emailRegex.test(email) || !fname || !lname) {
         return false;
@@ -50,6 +44,15 @@ function validate(password, email, fname, lname) {
 }
 
 app.get('/', (req, res) => {
+//     let s="select * from form";
+// db.all(s,[],(err,rows)=>{
+//     if (err) throw err.message;
+//     rows.forEach(row=>{
+//         console.log(row);
+//         res.send(row);
+//     })
+// })
+   //res.send(row);
     res.render("form");
 });
 
